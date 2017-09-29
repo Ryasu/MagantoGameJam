@@ -34,9 +34,9 @@ public class Tablero : MonoBehaviour
         {
             for (int j = 0; j < matrixColumna; j++)
             {
-                GameObject losetilla = floorTiles[Random.Range(0, floorTiles.Length)];
+                GameObject losetilla = floorTiles[0];
 
-                Instantiate(losetilla, new Vector2(i * tamX, j * tamY), Quaternion.identity);
+                Instantiate(losetilla, new Vector2((i * tamX)+(j*tamX), (j * tamY) -(i*tamY)), Quaternion.identity);
             }
         }
     }
