@@ -34,19 +34,19 @@ public class MovePlayer : MonoBehaviour {
             horizontal = (int)Input.GetAxisRaw("Horizontal");
             vertical = (int)Input.GetAxisRaw("Vertical");
 
-            if(vertical == 1)
+            if(vertical == 1)//arriba
             {
                 this.transform.position = new Vector2(this.transform.position.x + arriba.x, this.transform.position.y + arriba.y);
             }
-            else if (horizontal == 1)
+            else if (horizontal == 1)//derecha
             {
                 this.transform.position = new Vector2(this.transform.position.x + derecha.x, this.transform.position.y + derecha.y);
             }
-            else if(vertical == -1)
+            else if(vertical == -1)//abajo
             {
                 this.transform.position = new Vector2(this.transform.position.x + abajo.x, this.transform.position.y + abajo.y);
             }
-            else if (horizontal == -1)
+            else if (horizontal == -1)//izquierda
             {
                 this.transform.position = new Vector2(this.transform.position.x + izquierda.x, this.transform.position.y + izquierda.y);
             }
