@@ -33,12 +33,15 @@ public class Tablero : MonoBehaviour
         playersPos[16][13] = 1;
         if(map == 1)
         {
-            Instantiate(player, new Vector2((15 * tamX) + (12 * tamX) + 0.07f, (13 * tamY) - (16 * tamY)), Quaternion.identity);
-
+            GameObject obj = Instantiate(player, new Vector2((15 * tamX) + (12 * tamX) + 0.07f, (13 * tamY) - (16 * tamY)), Quaternion.identity);
+            obj.GetComponent<Position>().x = 16;
+            obj.GetComponent<Position>().y = 13;
         }
         else
         {
             GameObject obj = Instantiate(player, new Vector2(3*tamX + 0.07f, 3*tamY), Quaternion.identity);
+            obj.GetComponent<Position>().x = 1;
+            obj.GetComponent<Position>().y = 2;
 
         }
 
