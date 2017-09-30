@@ -5,12 +5,16 @@ using UnityEngine;
 public class Tablero : MonoBehaviour
 {
 
-    private int[][] matrix = new int[17][];
+    public int[][] matrix = new int[17][];
+    public int[][] playersPos = new int[17][];
     public int map;
     public GameObject[] floorTiles;
     public GameObject[] enemies;
     public float tamX;
     public float tamY;
+    public int posEnemyX;
+    public int posEnemyY;
+    public GameObject player;
 
     // Use this for initialization
     void Start()
@@ -19,13 +23,26 @@ public class Tablero : MonoBehaviour
         for (int i = 0; i < 17; i++)
         {
             matrix[i] = new int[18];
+            playersPos[i] = new int[18];
             for (int j = 0; j < 18; j++)
             {
                 matrix[i][j] = 0;
+                playersPos[i][j] = 0;
             }
         }
+        playersPos[16][13] = 1;
+        if(map == 1)
+        {
+            Instantiate(player, new Vector2((15 * tamX) + (12 * tamX) + 0.07f, (13 * tamY) - (16 * tamY)), Quaternion.identity);
 
-        creaMapa(matrix, 1);
+        }
+        else
+        {
+            GameObject obj = Instantiate(player, new Vector2(3*tamX + 0.07f, 3*tamY), Quaternion.identity);
+
+        }
+
+        creaMapa(matrix, map);
     }
 
 
@@ -35,7 +52,7 @@ public class Tablero : MonoBehaviour
 
         if(level == 1)
         { 
-            //Creo la matriz directamente con la forma del PAIS VASO
+            //Creo la matriz directamente con la forma del PAIS VASCO
             matrix[0][0] = 0; matrix[0][1] = 1; matrix[0][2] = 1; matrix[0][3] = 1; matrix[0][4] = 1; matrix[0][5] = 1; matrix[0][6] = 1; matrix[0][7] = 1; matrix[0][8] = 1; matrix[0][9] = 1; matrix[0][10] = 1; matrix[0][11] = 1; matrix[0][12] = 1; matrix[0][13] = 1; matrix[0][14] = 1; matrix[0][15] = 1; matrix[0][16] = 1; matrix[0][17] = 1;
             matrix[1][0] = 0; matrix[1][1] = 1; matrix[1][2] = 1; matrix[1][3] = 1; matrix[1][4] = 1; matrix[1][5] = 1; matrix[1][6] = 1; matrix[1][7] = 1; matrix[1][8] = 1; matrix[1][9] = 1; matrix[1][10] = 1; matrix[1][11] = 1; matrix[1][12] = 1; matrix[1][13] = 1; matrix[1][14] = 1; matrix[1][15] = 1; matrix[1][16] = 1; matrix[1][17] = 1;
             matrix[2][0] = 1; matrix[2][1] = 1; matrix[2][2] = 1; matrix[2][3] = 1; matrix[2][4] = 1; matrix[2][5] = 1; matrix[2][6] = 1; matrix[2][7] = 1; matrix[2][8] = 1; matrix[2][9] = 1; matrix[2][10] = 1; matrix[2][11] = 1; matrix[2][12] = 1; matrix[2][13] = 1; matrix[2][14] = 1; matrix[2][15] = 1; matrix[2][16] = 1; matrix[2][17] = 1;
@@ -85,7 +102,13 @@ public class Tablero : MonoBehaviour
                 GameObject losetilla = floorTiles[0];
                 if(matrix[i][j] == 1)
                     Instantiate(losetilla, new Vector2((i * tamX)+(j*tamX), (j * tamY) -(i*tamY)), Quaternion.identity);
-
+                    posEnemyX = i;
+                    posEnemyY = j;
+                if(i == 5 && j == 5)
+                {
+                    createEnemy((i * tamX) + (j * tamX), (j * tamY) - (i * tamY));
+                }
+                
             }
         }
     }
@@ -97,6 +120,9 @@ public class Tablero : MonoBehaviour
         {
             GameObject enemy = enemies[0];
             GameObject obj = Instantiate(enemy, new Vector2(x, y), Quaternion.identity);
+            obj.GetComponent<Position>().x = posEnemyX;
+            obj.GetComponent<Position>().y = posEnemyY;
+
 
 
         }

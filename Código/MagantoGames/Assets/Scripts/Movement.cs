@@ -23,12 +23,12 @@ public class Movement : MonoBehaviour {
 
     private void Update()
     {
-        cont++;
+        /*cont++;
         if(cont >= 60)
         {
             cont = 0;
             this.transform.position = new Vector2(this.transform.position.x + abajo.x, this.transform.position.y + abajo.y);
-        }
+        }*/
     }
 
 
