@@ -8,6 +8,7 @@ public class Tablero : MonoBehaviour
     private int[][] matrix = new int[17][];
     public int map;
     public GameObject[] floorTiles;
+    public GameObject[] enemies;
     public float tamX;
     public float tamY;
 
@@ -37,18 +38,34 @@ public class Tablero : MonoBehaviour
                 GameObject losetilla = floorTiles[0];
 
                 Instantiate(losetilla, new Vector2((i * tamX)+(j*tamX), (j * tamY) -(i*tamY)), Quaternion.identity);
+
+                if(i == 10 && j == 17)
+                {
+                    createEnemy((i * tamX) + (j * tamX), (j * tamY) - (i * tamY));
+                }
             }
         }
     }
 
 
+    void createEnemy(float x, float y)
+    {
+        if(map == 1)
+        {
+            GameObject enemy = enemies[0];
+            GameObject obj = Instantiate(enemy, new Vector2(x, y), Quaternion.identity);
 
+
+        }
+    }
+
+    void createBoss()
+    {
+
+    }
     // Update is called once per frame
     void Update()
     {
-        if (map == 1)
-        {
-
-        }
+       
     }
 }
